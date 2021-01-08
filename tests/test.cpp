@@ -6,12 +6,16 @@
 #include "Stack_args.h"
 class NonCopEx {
   double data;
+  double dada;
 
  public:
   NonCopEx() = default;
   NonCopEx(const NonCopEx&) = delete;
   NonCopEx(NonCopEx&&) = default;
-  NonCopEx(double _data) { data = _data; }
+  NonCopEx(double _data, double _dada) {
+    data = _data;
+    dada = _dada;
+  }
   ~NonCopEx() = default;
   auto operator=(NonCopEx&&) -> NonCopEx& = default;
   auto operator=(const NonCopEx&) -> NonCopEx& = delete;
@@ -73,9 +77,9 @@ TEST(NonCopEx, CorrectObject) {
 }
 TEST(Stack_args, PushValues) {
   Stack_args<NonCopEx> arg_stack;
-  arg_stack.push(NonCopEx(3.14));
+  arg_stack.push(NonCopEx(3.14, 294.2));
   EXPECT_EQ(arg_stack.head().getData(), 3.14);
-  arg_stack.push_emplace(NonCopEx(6.28));
+  arg_stack.push_emplace(6.28, 24.2);
   EXPECT_EQ(arg_stack.head().getData(), 6.28);
   EXPECT_EQ(arg_stack.pop().getData(), 6.28);
   EXPECT_EQ(arg_stack.head().getData(), 3.14);

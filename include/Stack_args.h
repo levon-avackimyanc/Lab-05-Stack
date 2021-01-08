@@ -19,7 +19,7 @@ template <typename T>
 template <typename... Args>
 void Stack_args<T>::push_emplace(Args&&... value) {
   if ((std::is_copy_constructible<T>::value) ||
-      (std::is_copy_constructible<T>::value)) {
+      (std::is_copy_assignable<T>::value)) {
     throw std::exception();
   }
   auto* elem = new Element<T>{{std::forward<Args>(value)...}, NonCopStack<T>::Head};
