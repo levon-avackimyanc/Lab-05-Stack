@@ -39,8 +39,10 @@ T Stack_args<T>::pop() {
   if (NonCopStack<T>::Head == nullptr) {
     throw std::exception();
   }
+  auto * temp = NonCopStack<T>::Head;
   T val = std::move(NonCopStack<T>::Head->val);
   NonCopStack<T>::Head = NonCopStack<T>::Head->prev;
+  delete temp;
   return val;
 }
 template <typename T>
