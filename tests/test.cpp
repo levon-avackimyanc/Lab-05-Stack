@@ -12,6 +12,7 @@ class NonCopEx {
   NonCopEx(const NonCopEx&) = delete;
   NonCopEx(NonCopEx&&) = default;
   NonCopEx(double _data) { data = _data; }
+  ~NonCopEx() = default;
   auto operator=(NonCopEx&&) -> NonCopEx& = default;
   auto operator=(const NonCopEx&) -> NonCopEx& = delete;
   double getData() const { return this->data; }

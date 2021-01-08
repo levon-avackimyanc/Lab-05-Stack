@@ -22,7 +22,7 @@ void Stack_args<T>::push_emplace(Args&&... value) {
       (std::is_copy_constructible<T>::value)) {
     throw std::exception();
   }
-  auto* elem = new Element<T>{std::forward<Args>(value)..., NonCopStack<T>::Head};
+  auto* elem = new Element<T>{{std::forward<Args>(value)...}, NonCopStack<T>::Head};
   NonCopStack<T>::Head = elem;
 }
 template <typename T>
